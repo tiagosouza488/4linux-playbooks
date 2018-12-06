@@ -1,0 +1,51 @@
+- name: Criar uma nova playbook que ira instalar os pacotes elep e vim
+  hosts: automation
+  tasks: 
+   - name: execucao de elep-release e vim
+     package:
+      name: epel-release,vim
+      state: present
+
+- name: Instalar vim e htop
+  hosts: devops,docker
+  tasks:
+   - name: execucao de htop e  vim
+     package:
+      name: htop,vim
+      state: present
+
+- name: fazendo as acoes acima com variaveis
+  hosts: "{{maquina01}}"
+  vars:
+   - maquina01: null
+   - pacotes01: null
+  tasks:
+   - name: instalando pacotes
+     package:
+      name: "{{pacotes01}}"
+
+   - name: Adicionando usuarios
+     package:
+      name: developer
+      state: present
+   
+   - name: adicionando usuarios 2
+     user:
+      name: devops
+      state: present
+
+   - name: adicionando usuarios 3
+     user:
+      name: michel
+      state: present 
+
+- name: segunda playboook no mesmo arquivo
+  hosts: "{{maquina02}}"
+  vars:
+   - maquina02: null
+   - pacotes02: null
+  tasks:
+  - name: instalando pacotes
+    package:
+     name: "{{pacotes02}}}"
+

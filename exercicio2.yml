@@ -1,0 +1,6 @@
+---
+- name: "Exercicio 2"
+  hosts: all
+  roles:
+    - role: '/etc/ansible/roles/exercicio2/'
+

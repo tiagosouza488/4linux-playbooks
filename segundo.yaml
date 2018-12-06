@@ -1,0 +1,15 @@
+
+- name: segunda playbook para variaveis
+  hosts: "{{maquina}}"
+  vars:
+   - maquina: null
+  tasks:
+   - name: executar este modulo somente na maquina que aplicar var
+     package:
+      name: vim
+
+   - name: criando um arquivo com o noe da maquina
+     file:
+      path: "{{arquivo}}"
+      state: touch
+
